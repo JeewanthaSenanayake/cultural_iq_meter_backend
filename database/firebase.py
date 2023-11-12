@@ -3,7 +3,7 @@ from firebase_admin import credentials, storage
 from firebase_admin import firestore
 
 
-path = 'database\cultural-iq-meter-firebase-adminsdk-z5bfu-f269a9a80c.json'
+path = 'database/cultural-iq-meter-firebase-adminsdk-z5bfu-f269a9a80c.json'
 cred = credentials.Certificate(path)
 firebase_admin.initialize_app(cred,{
     'storageBucket':'cultural-iq-meter.appspot.com'

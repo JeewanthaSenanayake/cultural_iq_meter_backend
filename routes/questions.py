@@ -1,4 +1,5 @@
 from fastapi import APIRouter, HTTPException, UploadFile, Query
+from fastapi.responses import JSONResponse
 
 import services.questions.questions as QuestionsUpload
 
@@ -42,7 +43,9 @@ def get_questions(leval:int, no_of_q:int):
         return {"questions": data}
     elif(leval == 2):
         data =  QuestionsUpload.get_randum_questions(leval="medium",no_of_q=no_of_q)
-        return {"questions": data}
+        # return {"questions": data}
+        content = {"questions": data}
+        return JSONResponse(content=content, charset="UTF-8")
     elif(leval == 3):
         data =  QuestionsUpload.get_randum_questions(leval="hard",no_of_q=no_of_q)
         return {"questions": data}
