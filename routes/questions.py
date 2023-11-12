@@ -45,7 +45,7 @@ def get_questions(leval:int, no_of_q:int):
         data =  QuestionsUpload.get_randum_questions(leval="medium",no_of_q=no_of_q)
         # return {"questions": data}
         content = {"questions": data}
-        return JSONResponse(content=content, charset="UTF-8")
+        return JSONResponse(content=content, headers={"Content-Type": "application/json; charset=UTF-8"})
     elif(leval == 3):
         data =  QuestionsUpload.get_randum_questions(leval="hard",no_of_q=no_of_q)
         return {"questions": data}
