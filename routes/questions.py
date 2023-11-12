@@ -40,7 +40,9 @@ async def uploadfile_with_img_question_ans_q( question: str, ans1: UploadFile, a
 def get_questions(leval:int, no_of_q:int):
     if(leval == 1):
         data =  QuestionsUpload.get_randum_questions(leval="easy",no_of_q=no_of_q)
-        return {"questions": data}
+        # return {"questions": data}
+        content = {"questions": data}
+        return JSONResponse(content=content, headers={"Content-Type": "application/json; charset=UTF-8"})
     elif(leval == 2):
         data =  QuestionsUpload.get_randum_questions(leval="medium",no_of_q=no_of_q)
         # return {"questions": data}
@@ -48,7 +50,9 @@ def get_questions(leval:int, no_of_q:int):
         return JSONResponse(content=content, headers={"Content-Type": "application/json; charset=UTF-8"})
     elif(leval == 3):
         data =  QuestionsUpload.get_randum_questions(leval="hard",no_of_q=no_of_q)
-        return {"questions": data}
+        # return {"questions": data}
+        content = {"questions": data}
+        return JSONResponse(content=content, headers={"Content-Type": "application/json; charset=UTF-8"})
     else:
         raise HTTPException(status_code=404, detail=str('Level not found'))
     
