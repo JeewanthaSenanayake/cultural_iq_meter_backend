@@ -1,6 +1,7 @@
 import firebase_admin
 from firebase_admin import credentials, storage
 from firebase_admin import firestore
+from firebase_admin import auth
 
 
 path = 'database/cultural-iq-meter-firebase-adminsdk-z5bfu-f269a9a80c.json'
@@ -16,4 +17,6 @@ def get_firestore_img_upload():
 def get_firestore_client():
     return firestore.client()
 
+def get_auth():
+    return auth
 

@@ -4,6 +4,7 @@ from fastapi.openapi.docs import get_swagger_ui_html
 from fastapi.middleware.cors import CORSMiddleware
 
 from routes.questions import questions_router
+from routes.user import user_router
 
 
 app = FastAPI()
@@ -23,6 +24,7 @@ app.add_middleware(
 )
 
 app.include_router(questions_router)
+app.include_router(user_router)
 
 
 @app.get("/")
