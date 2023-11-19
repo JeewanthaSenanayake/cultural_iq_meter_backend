@@ -2,8 +2,9 @@ import database.firebase as firebaseCon
 
 def use_create(userd:str):
     auth = firebaseCon.get_auth()
-    email = f"{userd}@iqmeater.com"
-    password = userd
+    u_name = userd.lower().replace(" ", "")
+    email = f"{u_name}@iqmeater.com"
+    password = u_name
     if(len(password)<=6):
         password = password + "123456"
     try:
@@ -26,11 +27,11 @@ def use_create(userd:str):
         return data
     except:
         print("User already exist")
-        user = auth.get_user_by_email(email)
-        db = firebaseCon.get_firestore_client()
-        doc_ref = db.collection('user').document(user.uid)
-        print('Successfully signed in user:', user.uid)
-        return doc_ref.get().to_dict()["data"]
+        # user = auth.get_user_by_email(email)
+        # db = firebaseCon.get_firestore_client()
+        # doc_ref = db.collection('user').document(user.uid)
+        # print('Successfully signed in user:', user.uid)
+        return False
 
 def update_soce(uid:str,score:int):
     db = firebaseCon.get_firestore_client()
