@@ -1,8 +1,10 @@
 import database.firebase as firebaseCon
+import re
 
 def use_create(userd:str):
     auth = firebaseCon.get_auth()
-    u_name = userd.lower().replace(" ", "")
+    # u_name = userd.lower().replace(" ", "")
+    u_name = re.sub(r'[^a-zA-Z0-9]', '', userd.lower())
     email = f"{u_name}@iqmeater.com"
     password = u_name
     if(len(password)<=6):
