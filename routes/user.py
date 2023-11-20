@@ -19,8 +19,8 @@ def put_user(user:str):
             content = {"user": data}
             return JSONResponse(content=content, headers={"Content-Type": "application/json; charset=UTF-8"})
         
-@user_router.post("/submit_score/{uid}/{score}")
-def submit_score(uid:str, score:int):
-    data = userAuth.update_soce(uid=uid,score=score)
+@user_router.post("/submit_score/{uid}/{score}/{leval}")
+def submit_score(uid:str, score:int, leval:int):
+    data = userAuth.update_soce(uid=uid,score=score,leval=leval)
     content = {"data": data}
     return JSONResponse(content=content, headers={"Content-Type": "application/json; charset=UTF-8"})
