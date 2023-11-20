@@ -35,7 +35,7 @@ def use_create(userd:str):
         # print('Successfully signed in user:', user.uid)
         return False
 
-def update_soce(uid:str,score:int,leval:int):
+def update_soce(uid:str,score:float,leval:int):
     db = firebaseCon.get_firestore_client()
     doc_ref = db.collection('user').document(uid)
     data = doc_ref.get().to_dict()["data"]
