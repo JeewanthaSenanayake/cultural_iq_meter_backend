@@ -41,6 +41,6 @@ def update_soce(uid:str,score:float,leval:int):
     data = doc_ref.get().to_dict()["data"]
     data["score"] = data["score"] + score
     data["leval"] = leval
-    doc_ref.set({"user":data})
+    doc_ref.set({"data":data})
     return data
     
