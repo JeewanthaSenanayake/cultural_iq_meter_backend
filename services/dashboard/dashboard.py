@@ -12,4 +12,6 @@ def get_all_rankings():
         })
 
     data.sort(key=lambda x: x["score"], reverse=True)
+    for i in range(len(data)):
+        data[i]["rank"] = i+1
     return data
