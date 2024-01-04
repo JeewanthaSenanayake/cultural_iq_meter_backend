@@ -5,6 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from routes.questions import questions_router
 from routes.user import user_router
+from routes.dashboard import dashboard_router
 
 
 app = FastAPI()
@@ -25,6 +26,7 @@ app.add_middleware(
 
 app.include_router(questions_router)
 app.include_router(user_router)
+app.include_router(dashboard_router)
 
 
 @app.get("/")
@@ -54,3 +56,4 @@ def custom_swagger_ui_html():
 @app.get("/openapi.json", include_in_schema=False)
 def get_openapi_json():
     return app.openapi()
+
