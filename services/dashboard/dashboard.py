@@ -8,7 +8,7 @@ def get_all_rankings():
         data.append({
             "name":doc.to_dict()["data"]["name"],
             "score":doc.to_dict()["data"]["score"],
-            "lastPlayed":doc.to_dict()["data"]["leval"],
+            "lastPlayed": "Easy" if doc.to_dict()["data"]["leval"]==1 else ("Medium" if doc.to_dict()["data"]["leval"] == 2 else "Hard")
         })
 
     data.sort(key=lambda x: x["score"], reverse=True)
