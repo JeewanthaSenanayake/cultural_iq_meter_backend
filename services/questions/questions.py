@@ -1,6 +1,7 @@
 import pandas as pd
 from io import StringIO, BytesIO
 import io
+import time
 
 import database.firebase as firebaseCon
 from PIL import Image
@@ -16,11 +17,14 @@ async def upload_img_questions_img_ans(question, ans1, ans2, ans3, ans4, correct
     img_url_list=[]
 
     for x in imgs:
+        ts = time.time()
         contents = await x.read()
-        blob = bucket.blob(f"ans/{x.filename}")
+        print(f"ans/{str(ts)}_{x.filename}")
+        blob = bucket.blob(f"ans/{str(ts)}_{x.filename}")
         blob.upload_from_string(contents, content_type=x.content_type)
         blob.make_public()
         img_url_list.append(blob.public_url)
+        time.sleep(0.01)
 
     data = {
         "question":question,
@@ -34,7 +38,6 @@ async def upload_img_questions_img_ans(question, ans1, ans2, ans3, ans4, correct
     }
 
     upload_to_db_img(tag=leval,q=data)
-
     return {"data": data}
 
 
@@ -46,9 +49,9 @@ async def upload_img_questions_img_q(file,question, ans1, ans2, ans3, ans4, corr
     # img.show()
 
     bucket = firebaseCon.get_firestore_img_upload()
-
+    ts = time.time()
     # Upload the file to Firebase Storage
-    blob = bucket.blob(f"question/{file.filename}")
+    blob = bucket.blob(f"question/{str(ts)}_{file.filename}")
     blob.upload_from_string(contents, content_type=file.content_type)
     blob.make_public()
 
